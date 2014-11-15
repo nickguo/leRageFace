@@ -5,6 +5,7 @@ textarea {
     height: 50%;
     display: table;
     text-align: center;
+    font-size: 15pt;
 }
 
 #image-loc {
