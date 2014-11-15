@@ -6,6 +6,7 @@ from nltk import word_tokenize
 from nltk.classify import NaiveBayesClassifier
 from nltk.corpus import movie_reviews
 from collections import defaultdict
+import random
 
 documents = defaultdict(list)
 
@@ -37,6 +38,34 @@ print ('accuracy:', nltk.classify.util.accuracy(classifier, test_feats))
 classifier.show_most_informative_features()
             
 
+def trollifyWord(word):
+    prob = random.randint(0,101)
+
+    if word == "the" and prob > 50:
+        word = "le"
+    if word == "The" and prob > 50:
+        word = "Le"
+    if word == "why" and prob > 50:
+        word = "y"
+    if word == "Why" and prob > 50:
+        word = "Y"
+    if word == "you're" and prob < 80:
+        word = "your"
+    if word == "You're" and prob < 80:
+        word = "Your"
+    if word == "what" and prob > 50:
+        word = "wat"
+    if word == "What" and prob > 50:
+        word = "Wat"
+
+    return word
+
+def trollifySentence(sentence):
+    sentence = sentence.split()
+    for i in range(len(sentence)):
+        print ("word: ", sentence[i])
+        sentence[i] = trollifyWord(sentence[i])
+    return " ".join(sentence)
 
 def getRage(string):
     result = classifier.prob_classify(word_feats(word_tokenize(string)))
@@ -48,8 +77,15 @@ def getRageList(paragraph):
     sentences = [string.strip() for string in sentences if len(string.strip()) > 2]
     sentiments = []
 
+    # generate the predictions on original text
     for sentence in sentences:
         sentiments.append(getRage(sentence))
 
+    # reddit-fy the text
+    for i in range(len(sentences)):
+        print ("trollifying: ",sentences[i])
+        sentences[i] = trollifySentence(sentences[i])
+
     return (sentiments, sentences)
+
 
