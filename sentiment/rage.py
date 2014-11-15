@@ -40,7 +40,7 @@ classifier.show_most_informative_features()
 
 def getRage(string):
     result = classifier.prob_classify(word_feats(word_tokenize(string)))
-    return (result.prob('pos'), result.prob('neg'))
+    return result.prob('pos')
 
 def getRageList(paragraph):
     sentences = tokenize.sent_tokenize(paragraph)
