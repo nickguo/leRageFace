@@ -123,7 +123,7 @@ def getRage(string):
 def getRageList(paragraph):
     sentences = tokenize.sent_tokenize(paragraph)
 
-    sentences = [string.strip() for string in sentences if len(string.strip()) > 0]
+    sentences = [string.strip() for string in sentences if len(string.strip()) > 1]
     sentiments = []
 
     # generate the predictions on original text
