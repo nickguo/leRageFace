@@ -14,13 +14,13 @@ class RageFaceGenerator:
             pos = values[i]
             if(pos <= .3):
                 rageFace = Image.open("/root/leRageFace/server/10.png")
-            elif(.3 < pos <= .4):
+            elif(.3 < pos <= .45):
                 number = random.randint(7,10)
                 rageFace = Image.open("/root/leRageFace/server/" +  str(number) + ".png")
-            elif(.4 < pos <= .5):
+            elif(.45 < pos <= .6):
                 number = random.randint(4,6)
                 rageFace = Image.open("/root/leRageFace/server/" + str(number) + ".png")
-            elif(.5 < pos <= .6):
+            elif(.6 < pos <= .75):
                 number = random.randint(0,3)
                 rageFace = Image.open("/root/leRageFace/server/" + str(number) + ".png")
             else:
