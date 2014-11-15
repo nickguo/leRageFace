@@ -46,10 +46,10 @@ sex_classifier = nltk.NaiveBayesClassifier.train(train_set)
 print ("done training sex")
 
 
-all_names = [name.lower() for name in names.words('male.txt')]
-all_names.extend([name.lower() for name in names.words('female.txt')])
+all_names = [name for name in names.words('male.txt')]
+#all_names.extend([name.lower() for name in names.words('female.txt')])
 all_names.extend([name for name in names.words('female.txt')])
-all_names.extend([name for name in names.words('male.txt')])
+#all_names.extend([name for name in names.words('male.txt')])
 
 try:
     all_names.remove("doe")
