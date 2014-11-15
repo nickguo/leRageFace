@@ -10,14 +10,24 @@ class RageFaceGenerator:
     def Generate(self, string):
         (values, sentences) = rage.sentiment.ragesent.getRageList(string)
         imageList = []
-
         for i in range(len(values)):
+            female = ""
             pos = values[i]
+            if "Derpina" in sentences[i]:
+                female = "female"
             if(pos <= .3):
+                rageFace = Image.open( os.path.join(os.path.dirname(__file__),female + "10.png"))
+            elif(.3 < pos <= .45):
                 number = random.randint(0,3)
-                rageFace = Image.open( os.path.join(os.path.dirname(__file__),str(number) + ".png"))
+                rageFace = Image.open( os.path.join(os.path.dirname(__file__),female + str(number) + ".png"))
+            elif(.45 < pos <= .6):
+                number = random.randint(4,6)
+                rageFace = Image.open( os.path.join(os.path.dirname(__file__),female + str(number) + ".png"))
+            elif(.6 < pos <= .7):
+                number = random.randint(7,10)
+                rageFace = Image.open( os.path.join(os.path.dirname(__file__),female + str(number) + ".png"))
             else:
-                rageFace = Image.open(os.path.join(os.path.dirname(__file__),"0.png"))
+                rageFace = Image.open(os.path.join(os.path.dirname(__file__),female + "0.png"))
             
             rageFace = rageFace.resize((150, 150), Image.ANTIALIAS)
             img_w,img_h = rageFace.size
@@ -62,7 +72,7 @@ class RageFaceGenerator:
             if(i%2 == 0 and i != 0):
                 y += 200
             background.paste(imageList[i],((x),(y)))
-        if (len(values)%2 == 1):
+        if (len(values)%2 == 1 and len(values) != 1):
             draw = ImageDraw.Draw(background)
             draw.rectangle(((201,y + 1),(199,y + 199)), outline = "black")
             draw.rectangle(((200,y),(400,y + 200)), outline = "black")
