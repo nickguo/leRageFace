@@ -3,6 +3,7 @@
     <head>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script src="/static/js/rage.js"></script>
+        <script src="/static/js/jquery.autosize.min.js"></script>
         <link rel="stylesheet" type="text/css" href="/static/css/rage.css" />
     </head>
     <body>
@@ -22,5 +23,8 @@
                 <button type="button" onClick="fn()">Submit Text!</button>
             </div>
         </div>
+        <script> $(document).ready(function(){
+                    $('textarea').autosize();    
+                    }); </script>
     </body>
 </html>

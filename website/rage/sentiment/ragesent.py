@@ -51,6 +51,15 @@ all_names.extend([name.lower() for name in names.words('female.txt')])
 all_names.extend([name for name in names.words('female.txt')])
 all_names.extend([name for name in names.words('male.txt')])
 
+try:
+    all_names.remove("doe")
+except:
+    pass
+try:
+    all_names.remove("Doe")
+except:
+    pass
+
 
 def is_name(word):
     return word in all_names
@@ -104,7 +113,6 @@ def trollifyWord(word):
 def trollifySentence(sentence):
     sentence = sentence.split()
     for i in range(len(sentence)):
-        print ("word: ", sentence[i])
         sentence[i] = trollifyWord(sentence[i])
     return " ".join(sentence)
 
@@ -115,7 +123,7 @@ def getRage(string):
 def getRageList(paragraph):
     sentences = tokenize.sent_tokenize(paragraph)
 
-    sentences = [string.strip() for string in sentences if len(string.strip()) > 2]
+    sentences = [string.strip() for string in sentences if len(string.strip()) > 1]
     sentiments = []
 
     # generate the predictions on original text
@@ -124,7 +132,6 @@ def getRageList(paragraph):
 
     # reddit-fy the text
     for i in range(len(sentences)):
-        print ("trollifying: ",sentences[i])
         sentences[i] = trollifySentence(sentences[i])
 
     return (sentiments, sentences)
