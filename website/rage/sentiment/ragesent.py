@@ -113,7 +113,6 @@ def trollifyWord(word):
 def trollifySentence(sentence):
     sentence = sentence.split()
     for i in range(len(sentence)):
-        print ("word: ", sentence[i])
         sentence[i] = trollifyWord(sentence[i])
     return " ".join(sentence)
 
@@ -133,7 +132,6 @@ def getRageList(paragraph):
 
     # reddit-fy the text
     for i in range(len(sentences)):
-        print ("trollifying: ",sentences[i])
         sentences[i] = trollifySentence(sentences[i])
 
     return (sentiments, sentences)
