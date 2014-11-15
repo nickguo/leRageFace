@@ -2,29 +2,22 @@ import os, sys
 from PIL import Image
 from PIL import ImageDraw
 from PIL import ImageFont
-import sentiment.rage
+import rage.sentiment.ragesent
 import random
+import os
 
 class RageFaceGenerator:
     def Generate(self, string):
-        (values, sentences) = sentiment.rage.getRageList(string)
+        (values, sentences) = rage.sentiment.ragesent.getRageList(string)
         imageList = []
 
         for i in range(len(values)):
             pos = values[i]
             if(pos <= .3):
-                rageFace = Image.open("/root/leRageFace/server/10.png")
-            elif(.3 < pos <= .45):
-                number = random.randint(7,10)
-                rageFace = Image.open("/root/leRageFace/server/" +  str(number) + ".png")
-            elif(.45 < pos <= .6):
-                number = random.randint(4,6)
-                rageFace = Image.open("/root/leRageFace/server/" + str(number) + ".png")
-            elif(.6 < pos <= .75):
                 number = random.randint(0,3)
-                rageFace = Image.open("/root/leRageFace/server/" + str(number) + ".png")
+                rageFace = Image.open( os.path.join(os.path.dirname(__file__),str(number) + ".png"))
             else:
-                rageFace = Image.open("/root/leRageFace/server/0.png")
+                rageFace = Image.open(os.path.join(os.path.dirname(__file__),"0.png"))
             
             rageFace = rageFace.resize((150, 150), Image.ANTIALIAS)
             img_w,img_h = rageFace.size
@@ -33,7 +26,7 @@ class RageFaceGenerator:
             offset=((bg_w-img_w),(bg_h-img_h))
             background.paste(rageFace,offset)
             draw = ImageDraw.Draw(background)
-            font = ImageFont.truetype("courier.ttf", 15)
+            font = ImageFont.truetype(os.path.join(os.path.dirname(__file__),"courier.ttf"), 15)
             text = sentences[i]
             textList = []
             counter = 0
@@ -74,7 +67,7 @@ class RageFaceGenerator:
             draw.rectangle(((201,y + 1),(199,y + 199)), outline = "black")
             draw.rectangle(((200,y),(400,y + 200)), outline = "black")
         image_name = (str)(random.randint(1,10000000)) + ".jpg"
-        background.save(image_name)
+        background.save(os.path.join(os.path.abspath(os.path.dirname(__file__)+'/../static/img'), image_name))
         return image_name
     
 

@@ -1,7 +1,7 @@
 import os
 import tornado.web
 from rage.handlers.home import HomeHandler
-from rage.handlers.rage import RageHandler
+from rage.handlers.ragehandler import RageHandler
 
 
 class Application(tornado.web.Application):
