@@ -36,7 +36,21 @@ for i in range(len(values)):
     text = sentences[i]
     textList = []
     counter = 0
-    draw.text((0,0), sentences[i], (0,0,0), font=font)
+    while(counter < len(text)):
+        edge = counter + 20
+        if(edge < len(text)):
+            while(text[edge] != " "):
+                edge = edge - 1
+            textList.append(text[counter:edge])
+            counter = edge
+        else:
+            textList.append(text[counter:])
+            break
+    x = 1
+    y = 1
+    for i in range(len(textList)):
+        draw.text((x,y), textList[i], (0,0,0), font=font)
+        y  = y + 20
     draw.rectangle(((1,1),(199,199)), outline = "black")
     draw.rectangle(((0,0),(200,200)), outline = "black")
     imageList.append(background)
