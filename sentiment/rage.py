@@ -1,10 +1,11 @@
 import nltk
 import nltk.classify.util
+
+from nltk import tokenize
 from nltk import word_tokenize
 from nltk.classify import NaiveBayesClassifier
 from nltk.corpus import movie_reviews
 from collections import defaultdict
-import random
 
 documents = defaultdict(list)
 
@@ -18,8 +19,7 @@ pos_ids = movie_reviews.fileids('pos')
 neg_feats = [(word_feats(movie_reviews.words(fileids=[f])),'neg') for f in neg_ids]
 pos_feats = [(word_feats(movie_reviews.words(fileids=[f])),'pos') for f in pos_ids]
 
-random.shuffle(neg_feats)
-random.shuffle(pos_feats)
+#neg_feats.append(({'toxic':True, 'TOXIC':True},'neg'))
 
 
 #neg_split = len(neg_feats)*9//10
@@ -40,4 +40,14 @@ classifier.show_most_informative_features()
 
 def getRage(string):
     result = classifier.prob_classify(word_feats(word_tokenize(string)))
-    print ("POS: %.3f, NEG: %.3f" % (result.prob('pos'), result.prob('neg')))
+    return (result.prob('pos'), result.prob('neg'))
+
+def getRageList(paragraph):
+    sentences = tokenize.sent_tokenize(paragraph)
+    sentiments = []
+
+    for sentence in sentences:
+        sentiments.append(getRage(sentence))
+
+    return (sentiments, sentences)
+
