@@ -34,7 +34,7 @@ class RageFaceGenerator:
             offset=((bg_w-img_w),(bg_h-img_h))
             background.paste(rageFace,offset)
             draw = ImageDraw.Draw(background)
-            font = ImageFont.truetype("courier.ttf", 15)
+            font = ImageFont.truetype(os.path.join(os.path.dirname(__file__),"courier.ttf"), 15)
             text = sentences[i]
             textList = []
             counter = 0
@@ -75,7 +75,7 @@ class RageFaceGenerator:
             draw.rectangle(((201,y + 1),(199,y + 199)), outline = "black")
             draw.rectangle(((200,y),(400,y + 200)), outline = "black")
         image_name = (str)(random.randint(1,10000000)) + ".jpg"
-        background.save(os.join(os.path.abspath('../static/img/', image_name)))
+        background.save(os.path.join(os.path.abspath(os.path.dirname(__file__)+'/../static/img'), image_name))
         return image_name
     
 

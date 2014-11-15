@@ -6,4 +6,4 @@ class RageHandler(tornado.web.RequestHandler):
         super(self)
         
     def get(self):
-        self.write(RageFaceGenerator().Generate(self.get_argument('img')));
+        self.write("/static/img/"+RageFaceGenerator().Generate(self.get_argument('img')));
