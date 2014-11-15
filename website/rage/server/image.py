@@ -15,9 +15,9 @@ class RageFaceGenerator:
             pos = values[i]
             if "Derpina" in sentences[i]:
                 female = "female"
-            if(pos <= .3):
+            if(pos <= .2):
                 rageFace = Image.open( os.path.join(os.path.dirname(__file__),female + "10.png"))
-            elif(.3 < pos <= .45):
+            elif(.2 < pos <= .45):
                 number = random.randint(7,10)
                 rageFace = Image.open( os.path.join(os.path.dirname(__file__),female + str(number) + ".png"))
             elif(.45 < pos <= .6):
