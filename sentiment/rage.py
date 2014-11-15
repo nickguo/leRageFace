@@ -44,6 +44,8 @@ def getRage(string):
 
 def getRageList(paragraph):
     sentences = tokenize.sent_tokenize(paragraph)
+
+    sentences = [string.strip() for string in sentences if len(string.strip()) > 2]
     sentiments = []
 
     for sentence in sentences:
