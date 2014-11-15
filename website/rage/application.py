@@ -1,14 +1,14 @@
 import os
 import tornado.web
 from rage.handlers.home import HomeHandler
+from rage.handlers.rage import RageHandler
 
 
 class Application(tornado.web.Application):
     def __init__(self):
-        # the current list of tracks that are playable
-        self.music = []
 
         handlers=[
+            (r"/rage", RageHandler),
             (r"/", HomeHandler),
         ]
 
