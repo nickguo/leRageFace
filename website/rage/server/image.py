@@ -10,7 +10,7 @@ class RageFaceGenerator:
     def Generate(self, string):
         (values, sentences) = rage.sentiment.ragesent.getRageList(string)
         if(len(values) == 0 or len(sentences)):
-            errorFace = Image.open(os.path.join(os.path.dirname(__file__),"error.jpg"))
+            errorFace = Image.open(os.path.join(os.path.dirname(__file__),"error.png"))
             image_name = (str)(random.randint(1,10000000)) + ".jpg"
             errorFace.save(os.path.join(os.path.abspath(os.path.dirname(__file__)+'/../static/img'), image_name))
             return image_name
