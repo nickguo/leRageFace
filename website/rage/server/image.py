@@ -18,13 +18,13 @@ class RageFaceGenerator:
             if(pos <= .3):
                 rageFace = Image.open( os.path.join(os.path.dirname(__file__),female + "10.png"))
             elif(.3 < pos <= .45):
-                number = random.randint(0,3)
+                number = random.randint(7,10)
                 rageFace = Image.open( os.path.join(os.path.dirname(__file__),female + str(number) + ".png"))
             elif(.45 < pos <= .6):
                 number = random.randint(4,6)
                 rageFace = Image.open( os.path.join(os.path.dirname(__file__),female + str(number) + ".png"))
             elif(.6 < pos <= .7):
-                number = random.randint(7,10)
+                number = random.randint(0,3)
                 rageFace = Image.open( os.path.join(os.path.dirname(__file__),female + str(number) + ".png"))
             else:
                 rageFace = Image.open(os.path.join(os.path.dirname(__file__),female + "0.png"))
